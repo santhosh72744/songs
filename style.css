@@ -1,0 +1,226 @@
+/* Amor Dei Ministries - Master Stylesheet
+   Theme: Midnight Divine (Purple & Gold)
+*/
+
+:root {
+    --primary-color: #6d28d9;    /* Deep Purple */
+    --accent-color: #f59e0b;     /* Warm Gold */
+    --bg-dark: #0f172a;          /* Navy Black */
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --glass: rgba(255, 255, 255, 0.03);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+    background-attachment: fixed;
+}
+
+/* Header Section */
+.main-header {
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), var(--bg-dark)),
+                url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&q=80') center/cover;
+    position: relative;
+    padding: 0 20px;
+}
+
+.header-overlay h1 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(1.8rem, 7vw, 3.5rem);
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin: 10px 0;
+    background: linear-gradient(to right, #ffffff, var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.service-date {
+    font-weight: 800;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+}
+
+.sub-title {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* UPDATED: Centered Song Navigation */
+.song-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 0;
+    width: 100%;
+}
+
+.song-nav-inner {
+    display: flex;
+    justify-content: center; /* Perfectly Centered */
+    align-items: center;
+    flex-wrap: wrap;        /* Wraps neatly on tablet */
+    gap: 12px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.song-nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 10px 22px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.song-nav a:hover {
+    border-color: var(--primary-color);
+    color: var(--text-main);
+    background: rgba(109, 40, 217, 0.1);
+}
+
+.song-nav a.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(109, 40, 217, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Main Content Container */
+.songbook-container {
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 0 25px;
+}
+
+.song-section {
+    margin-bottom: 100px;
+}
+
+/* Song Card UI */
+.song-card {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+    opacity: 0.4;
+    transform: scale(0.92);
+    filter: blur(2px);
+}
+
+/* Active Song Highlight */
+.song-card.active {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+    border-color: rgba(109, 40, 217, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(165deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+}
+
+.song-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 35px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 25px;
+}
+
+.song-index {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.song-header h2 {
+    font-size: 2rem;
+    color: var(--accent-color);
+    font-weight: 800;
+}
+
+/* Lyrics Styling (Optimized for Telugu) */
+.lyrics {
+    font-size: 1.4rem;
+    white-space: pre-line;
+    color: #e2e8f0;
+    line-height: 2.2; /* Spacious for singing */
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Mobile Responsive Tweak */
+@media (max-width: 768px) {
+    .song-nav-inner {
+        justify-content: flex-start; /* Better for mobile horizontal swiping */
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 5px;
+    }
+    
+    .song-nav-inner::-webkit-scrollbar {
+        display: none;
+    }
+
+    .song-card {
+        padding: 30px 20px;
+        border-radius: 24px;
+    }
+
+    .song-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .lyrics {
+        font-size: 1.15rem;
+        line-height: 2;
+    }
+
+    .main-header {
+        height: 35vh;
+    }
+}
+
+/* Utility: Custom selection color */
+::selection {
+    background: var(--primary-color);
+    color: white;
+}

@@ -159,6 +159,7 @@ body::before {
   border-radius: 14px;
   text-decoration: none;
   color: var(--ink-muted);
+  padding-top: 5px;
 }
 
 
@@ -196,11 +197,15 @@ body::before {
   background:
     linear-gradient(145deg, var(--card-highlight), var(--card-surface));
   border-radius: 32px;
-  padding: 60px;
+
+  /* REDUCED TOP PADDING */
+  padding: 24px 60px 60px;
+
   box-shadow: var(--shadow-deep);
   transform: translateZ(0);
   transition: all 0.4s ease;
 }
+
 
 /* top light reflection */
 .song-card::before {
@@ -273,18 +278,32 @@ body::before {
    LYRICS — DEPTH TEXT PANEL
 ================================================= */
 .lyrics {
-  background: linear-gradient(180deg, #ffffff, #f4f6ff);
-  padding: 36px 40px;
+  background: linear-gradient(180deg, #e4e9ff, #f4f6ff);
+  padding: 14px 40px;          /* reduced top & bottom */
   border-radius: 22px;
   box-shadow:
     inset 0 3px 6px rgba(255,255,255,0.9),
     inset 0 -4px 10px rgba(0,0,0,0.08);
+
   font-size: 1.15rem;
-  line-height: 2.2;
+  line-height: 2;              /* slightly tighter */
   white-space: pre-line;
-  color: #0f172a;
+  color: #000000;
+
+  margin: 0;                   /* no external gap */
 }
 
+
+#song-index .lyrics {
+  padding: 10px 24px;          /* very tight for index */
+  height: auto !important;
+  min-height: unset !important;
+  line-height: 1.4;
+}
+
+#song-index .lyrics p {
+  margin: 0 0 8px 0;
+}
 /* verse separation */
 .lyrics br + br {
   display: block;
@@ -295,6 +314,7 @@ body::before {
 .lyrics::first-line {
   font-weight: 700;
   color: var(--accent-main);
+  line-height: normal;
 }
 
 /* =================================================
@@ -307,6 +327,7 @@ body::before {
   margin-bottom: 18px;
   color: var(--accent-main);
   text-decoration: none;
+  line-height: normal;
 }
 
 #song-index a:hover {
@@ -318,21 +339,18 @@ body::before {
 ================================================= */
 @media (max-width: 768px) {
 
+  /* SONG CARD */
   .song-card {
     padding: 28px;
-  }
-
-  .lyrics {
-    padding: 20px;
   }
 
   /* SONG HEADER */
   .song-header {
     display: flex;
-    flex-wrap: wrap;        /* allow next line */
+    flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;   /* reduced gap */
+    gap: 8px;
+    margin-bottom: 4px;   /* VERY tight */
   }
 
   /* SONG INDEX (01) */
@@ -342,23 +360,29 @@ body::before {
     flex-shrink: 0;
   }
 
-  /* SONG TITLE — ALWAYS SINGLE LINE */
+  /* SONG TITLE — SINGLE LINE, NO EXTRA SPACE */
   .song-header h2 {
     font-size: 1.6rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 0;
-    flex: 1;               /* take remaining space */
+    margin: 0;            /* KEY FIX */
+    flex: 1;
   }
 
   /* LEAD NAME — ALWAYS NEXT LINE, RIGHT */
   .song-header h3 {
-    flex-basis: 100%;      /* FORCE next line */
-    text-align: right;     /* PERFECT right alignment */
+    flex-basis: 100%;
+    text-align: right;
     font-size: 0.8rem;
     color: var(--ink-muted);
     white-space: nowrap;
+    margin: 0;            /* remove default margin */
+  }
+
+  /* LYRICS — REDUCED TOP SPACE */
+  .lyrics {
+    padding: 12px 20px 20px;
   }
 
   /* NAV BAR */
@@ -376,3 +400,5 @@ body::before {
     font-weight: 600;
   }
 }
+
+

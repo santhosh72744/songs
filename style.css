@@ -323,34 +323,42 @@ body::before {
   }
 
   .lyrics {
-    padding: 22px;
+    padding: 20px;
   }
 
-  /* KEEP HEADER IN ONE ROW */
+  /* SONG HEADER */
   .song-header {
     display: flex;
+    flex-wrap: wrap;        /* allow next line */
     align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
+    gap: 10px;
+    margin-bottom: 12px;   /* reduced gap */
   }
 
-  .song-header h2 {
-    font-size: 1.6rem;
-    margin-bottom: 4px;
-  }
-
-  /* song index (01) */
+  /* SONG INDEX (01) */
   .song-index {
     font-size: 0.8rem;
     padding: 8px 12px;
+    flex-shrink: 0;
   }
 
-  /* lead name stays RIGHT */
-  .song-header h3 {
-    margin-left: auto;
-    font-size: 0.8rem;
+  /* SONG TITLE — ALWAYS SINGLE LINE */
+  .song-header h2 {
+    font-size: 1.6rem;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+    flex: 1;               /* take remaining space */
+  }
+
+  /* LEAD NAME — ALWAYS NEXT LINE, RIGHT */
+  .song-header h3 {
+    flex-basis: 100%;      /* FORCE next line */
+    text-align: right;     /* PERFECT right alignment */
+    font-size: 0.8rem;
     color: var(--ink-muted);
+    white-space: nowrap;
   }
 
   /* NAV BAR */
@@ -368,4 +376,3 @@ body::before {
     font-weight: 600;
   }
 }
-

@@ -80,19 +80,6 @@ body::before {
   background-position: center;
 }
 
-
-
-
-
-/* softer vignette so image details stay visible */
-
-
-
-
-
-
-
-
 .header-overlay {
   text-align: center;
   padding: 48px 56px;
@@ -133,26 +120,47 @@ body::before {
 }
 
 .song-nav-inner {
-  max-width: 1100px;
-  margin: auto;
-  padding: 16px 24px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(18px);
-  border-radius: 20px;
   display: flex;
-  gap: 22px;
-  overflow-x: auto;
+  flex-wrap: nowrap;
+  gap: 12px;
+
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 18px;
   box-shadow: var(--shadow-soft);
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
-.song-nav a {
-  text-decoration: none;
-  font-size: 0.95rem;
-  color: var(--ink-muted);
-  padding: 8px 16px;
-  border-radius: 14px;
-  transition: all 0.3s ease;
+.song-nav-inner::-webkit-scrollbar {
+  display: none;
 }
+
+
+.song-nav a {
+  display: inline-flex;        /* 🔑 VERY IMPORTANT */
+  align-items: center;
+  justify-content: center;
+
+  white-space: nowrap;
+  word-break: keep-all;        /* Telugu-safe */
+  overflow-wrap: normal;
+
+  flex: 0 0 auto;              /* never shrink */
+  line-height: 1;
+
+  padding: 10px 16px;
+  font-size: 0.85rem;
+
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--ink-muted);
+}
+
 
 .song-nav a:hover {
   background: #eef2ff;
@@ -309,20 +317,55 @@ body::before {
    RESPONSIVE
 ================================================= */
 @media (max-width: 768px) {
+
   .song-card {
-    padding: 36px;
+    padding: 28px;
   }
 
   .lyrics {
-    padding: 24px;
+    padding: 22px;
   }
 
+  /* KEEP HEADER IN ONE ROW */
   .song-header {
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
   }
 
+  .song-header h2 {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+  }
+
+  /* song index (01) */
+  .song-index {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+
+  /* lead name stays RIGHT */
   .song-header h3 {
-    margin-left: 0;
+    margin-left: auto;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    color: var(--ink-muted);
+  }
+
+  /* NAV BAR */
+  .song-nav {
+    margin: 12px 12px 0;
+  }
+
+  .song-nav a {
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    white-space: nowrap;
+  }
+
+  .song-nav a.active {
+    font-weight: 600;
   }
 }
+
